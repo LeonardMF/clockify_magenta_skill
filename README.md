@@ -10,7 +10,8 @@ With Time Tracker skill you can track your working hours in Clockify via Voice.
 
     $ python manage.py test 
 
-**BUG:** `sssssssA translation for locale de is not available.``
+**BUG:** `sssssssA translation for locale de is not available.`
+*Note:* Try translation with `msgfmt de.po -o de.mo`
 
 ## Run 
 
