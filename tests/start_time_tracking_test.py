@@ -9,14 +9,12 @@
 #
 import unittest
 
-from impl.hello import skill
+from impl.start_time_tracker import skill
 
 
 class TestMain(unittest.TestCase):
 
-    @unittest.skip("Just an example.")
     def test_hello_handler(self):
-        """ A simple test case to ensure that our implementation returns 'Hello'
-        """
-        response = skill.test_intent('SMALLTALK__GREETINGS')
-        self.assertEqual(response.text.key, 'HELLOAPP_HELLO')
+        
+        response = skill.test_intent('TEAM_06_START_TIME_TRACKING')
+        self.assertEqual(response.text.key, 'ASK_PROJECT')

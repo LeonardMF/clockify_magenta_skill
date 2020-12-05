@@ -1,0 +1,17 @@
+{
+    "v2": {
+        "showsInCatalog": true,
+        "displayName": "Time Tracker",
+        "headline": "Time Tracking with Clockify",
+        "description": "With the Time Tracker skill you can track your working hours in Clockify.",
+        "iconUrl": "https://time-tracker-team06.s3.eu-central-1.amazonaws.com/clockify-logo.png",
+        "design": {
+            "backgroundColor": "#03a9f4"
+        },
+            "examplePhrases": [
+                "öffne Zeiterfassung",
+                "starte Zeiterfassung"
+            ]
+    },
+    "fileVersion": 1
+}

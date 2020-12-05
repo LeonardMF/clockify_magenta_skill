@@ -31,3 +31,6 @@ msgstr "Es tut mir leid, das war nicht meine Nummer. Vielleicht nächstes Mal?"
 
 msgid "HELLOAPP_NO_NUMBER_MESSAGE"
 msgstr "Ich hatte Probleme dich zu verstehen. Bitte rate eine Nummer von 1 bis 10."
+
+msgid "ASK_PROJECT"
+msgstr "An welchem Projekt möchtest du arbeiten?"

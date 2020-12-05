@@ -1,15 +1,22 @@
-# Skill time-tracker - python
+# Time Tracker
 
-## Samples
+With Time Tracker skill you can track your working hours in Clockify via Voice.
 
-### Hello
+## Active virtual enviroment
 
-This implementation returns "Hello" greeting to user saying "Hello". 
+    $ source .venv/bin/activate 
+    
+## Test
 
-### Chuck Norris Jokes
+    $ python manage.py test 
 
-This implementation returns a random joke from Chuck Norris jokes database: http://api.icndb.com/jokes/random
+## Run 
 
-### Guess the Number Game
+    $ python manage.py --dev run
 
-This is a sample implementation of "Guess the Number" game. User says a number and we answer if they got it right or not.
+The Skill runs at http://localhost:4242/.
+
+Expose the locally running skill via ngrok: 
+
+    $ ./ngrok http 4242 --subdomain time-tracker
+

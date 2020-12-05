@@ -15,7 +15,8 @@ from impl.joke import skill
 
 
 class TestMain(unittest.TestCase):
-
+    
+    @unittest.skip("Just an example.")
     @requests_mock.mock()
     def test_joke_handler(self, mock):
         """ Mock the request by providing data and ensure that implementation returns the joke
@@ -32,7 +33,7 @@ class TestMain(unittest.TestCase):
 
         response = skill.test_intent('AMUSEMENT__JOKE')
         self.assertEqual(response.text.key, 'HELLOAPP_JOKE')
-
+    @unittest.skip("Just an example.")
     @requests_mock.mock()
     def test_fail_joke_handler(self, mock):
         """ Mock the request to simulate remote server failure and ensure the implementation returns error message
@@ -41,7 +42,7 @@ class TestMain(unittest.TestCase):
 
         response = skill.test_intent('AMUSEMENT__JOKE')
         self.assertEqual(response.text.key, 'HELLOAPP_REQUEST_ERROR')
-
+    @unittest.skip("Just an example.")
     @requests_mock.mock()
     def test_fail_response_joke_handler(self, mock):
         """ Mock the request to simulate malformed response and ensure the implementation returns error message
