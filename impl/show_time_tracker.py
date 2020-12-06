@@ -11,14 +11,16 @@ from skill_sdk import skill, Response, tell, ask
 from skill_sdk.l10n import _
 
 
-@skill.intent_handler('TEAM_06_START_TIME_TRACKING')
+@skill.intent_handler('TEAM_06_SHOW_TIME_TRACKING')
 def handler() -> Response:
-    """ Handler of TEAM_06_START_TIME_TRACKING intent,
-        TEAM_06_START_TIME_TRACKING intent is activated when user says 'zeiterfassung starten'
-        returns question for project
+    """ Handler of TEAM_06_SHOW_TIME_TRACKING intent,
+        TEAM_06_SHOW_TIME_TRACKING intent is activated when user says 'Stunden'
+        returns booked working hours
 
     :return:        Response
     """
-    msg = _('ASK_PROJECT')
-    response = ask(msg)
+
+    msg = "Bislang wurden keine Stunden erfasst."
+
+    response = tell(msg)
     return response

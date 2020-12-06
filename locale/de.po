@@ -11,26 +11,32 @@ msgstr ""
 "Language: de_DE\n"
 
 
-msgid "HELLOAPP_HELLO"
-msgstr "Hallo"
+msgid "WELCOME_NEW_USER"
+msgstr "Willkommen zum Clockify Skill, hier kannst du deine Zeiterfassung in Clockify vornehmen oder gebuchte Stunden abfragen. Um eine neue Zeiterfassung zu starten sag einfach 'Zeiterfassung starten' und gebe das Projekt und die Aufgabe an, an der du arbeiten möchtest. Beim nächsten Öffnen des Skill, kannst du die Zeiterfassung stoppen oder gebuchte Stunden abfragen."
 
-msgid "HELLOAPP_JOKE"
-msgstr "Ich habe einen Witz für dich! {joke}"
+msgid "WELCOME_RETURNING_USER"
+msgstr "Willkommen zurück."
 
-msgid "HELLOAPP_REQUEST_ERROR"
-msgstr "Ich hatte Probleme, einen Witz zu bekommen. Der Fehler ist {err}"
+msgid "WELCOME_SELECTION"
+msgstr "Möchtest du die Zeiterfassung starten oder gebuchte Stunden abfragen?"
 
-msgid "HELLOAPP_RESPONSE_ERROR"
-msgstr "Ich hatte Probleme, einen Witz für dich zu bekommen. Es tut mir leid :("
+msgid "WELCOME_STOP_SELECTION"
+msgstr "Möchtest du die aktuelle Zeiterfassung stoppen?"
 
-msgid "HELLOAPP_NUMBER_SUCCESS_MESSAGE"
-msgstr "Bingo! Die Nummer ist {number}"
-
-msgid "HELLOAPP_NUMBER_WRONG_MESSAGE"
-msgstr "Es tut mir leid, das war nicht meine Nummer. Vielleicht nächstes Mal?"
-
-msgid "HELLOAPP_NO_NUMBER_MESSAGE"
-msgstr "Ich hatte Probleme dich zu verstehen. Bitte rate eine Nummer von 1 bis 10."
+msgid "WELCOME_SHOW_SELECTION"
+msgstr "Möchtest du gebuchte Stunden abfragen?"
 
 msgid "ASK_PROJECT"
 msgstr "An welchem Projekt möchtest du arbeiten?"
+
+msgid "ASK_TASK"
+msgstr "Beschreibe deine Aufgabe in wenigen Wörtern. Starte mit 'ich möchte '."
+
+msgid "START_COMFIRMATION"
+msgstr "Ok, ich starte die Zeiterfassung. Viel Erfolg."
+
+msgid "STOP_COMFIRMATION"
+msgstr "Ok, ich stoppe die Zeiterfassung für {project}. Du hast {duration} an {task} gearbeitet."
+
+msgid "STOP_ERROR"
+msgstr "Aktuell läuft die Zeiterfassung nicht."
