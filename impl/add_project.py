@@ -10,6 +10,7 @@
 from skill_sdk import skill, Response, ask
 from skill_sdk.l10n import _
 
+# from clockify_api import get_clockify, get_projects
 
 @skill.intent_handler('TEAM_06_ADD_PROJECT')
 def handler(project: str) -> Response:
@@ -23,6 +24,14 @@ def handler(project: str) -> Response:
     project = project
     print('Project: ', project)
     # ToDo: Set project in context
+
+    # # ToDo: Check project_id
+    # clockify = get_clockify()
+    # clockify_id = clockify['user_id']
+    # workspace_id = clockify['active_workspace_id']
+    # projects = get_projects(workspace_id)
+    # project_id = projects[project]
+
     msg = _('ASK_TASK')
     response = ask(msg)
     return response

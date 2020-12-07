@@ -7,3 +7,4 @@ __pycache__
 /.pydevproject
 skill_sdk.egg-info/
 .venv
+.env

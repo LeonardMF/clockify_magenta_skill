@@ -36,7 +36,7 @@ msgid "START_COMFIRMATION"
 msgstr "Ok, ich starte die Zeiterfassung. Viel Erfolg."
 
 msgid "STOP_COMFIRMATION"
-msgstr "Ok, ich stoppe die Zeiterfassung für {project}. Du hast {duration} an {task} gearbeitet."
+msgstr "Ok, ich stoppe die Zeiterfassung am {project}. Du hast {duration} an {task} gearbeitet."
 
 msgid "STOP_ERROR"
 msgstr "Aktuell läuft die Zeiterfassung nicht."

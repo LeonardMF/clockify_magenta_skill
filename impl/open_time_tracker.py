@@ -9,8 +9,9 @@
 #
 from skill_sdk import skill, Response, tell, ask
 from skill_sdk.l10n import _
+from clockify_api import check_running_timer, get_clockify, get_time_entries
 
-
+#@skill.intent_handler('TEAM_06_START_TIME_TRACKING')
 @skill.intent_handler('TEAM_06_OPEN_TIME_TRACKING')
 def handler() -> Response:
     """ Handler of TEAM_06_OPEN_TIME_TRACKING intent,
@@ -21,20 +22,26 @@ def handler() -> Response:
     """
 
     #ToDo: Get user id
-    user_id = ''
-    returning_user = False
+    # user_id = ''
+    # returning_user = False
+    # if returning_user:
+    #     msg = _('WELCOME_RETURNING_USER')
+    # else: 
+    #     msg = _('WELCOME_NEW_USER')
 
-    if returning_user:
+    clockify = get_clockify()
+    clockify_id = clockify['user_id']
+    workspace_id = clockify['active_workspace_id']
+    time_entries = get_time_entries(workspace_id, clockify_id)
+
+    # Get time tracking status
+    running_timer = check_running_timer(time_entries)
+
+    if running_timer:
         msg = _('WELCOME_RETURNING_USER')
-    else: 
-        msg = _('WELCOME_NEW_USER')
-
-    # ToDo: Get time tracking status
-    time_tracking_on = False
-
-    if time_tracking_on:
         msg = msg + " " + _('WELCOME_STOP_SELECTION')
     else:
+        msg = _('WELCOME_NEW_USER')
         msg = msg + " " + _('WELCOME_SELECTION')
         
     response = ask(msg)
