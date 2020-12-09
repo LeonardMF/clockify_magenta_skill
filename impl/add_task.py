@@ -13,33 +13,34 @@ from skill_sdk import skill, Response, tell, ask
 from skill_sdk.l10n import _
 
 from clockify_api import get_clockify, get_projects, add_time_entrie
+from db import get_project, set_task, get_task
 
 #@skill.intent_handler('TEAM_06_START_TIME_TRACKING')
 @skill.intent_handler('TEAM_06_ADD_TASK')
-def handler(task: str) -> Response:
+def handler(user_id: str, task: str) -> Response:
     """ Handler of TEAM_06_ADD_TASK intent,
         TEAM_06_ADD_TASK intent is activated when user says '(ich möchte|ich werde) (die|den|das)(?P<task>.*)'
         returns confirmation start timer
 
     :return:        Response
     """
-    task = task
-    print('Task: ', task)
-    task = "Intents implementieren"
-    # ToDo: Get project from context
-    project = 'Magenta Skill'
-    
+    # ToDo: Get task from context
+    task = get_task(user_id)
+    # set_task(user_id,task)
 
+    # Get project from db
+    project = get_project(user_id)
+    
     clockify = get_clockify()
     clockify_id = clockify['user_id']
     workspace_id = clockify['active_workspace_id']
     projects = get_projects(workspace_id)
     project_id = projects[project]
 
-    if project == '':
+    if project is None:
         msg = _('ASK_PROJECT')
         response = ask(msg)
-    elif task == '':
+    elif task is None:
         msg = _('ASK_TASK')
         response = ask(msg)
     else:

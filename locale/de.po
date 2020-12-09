@@ -12,7 +12,7 @@ msgstr ""
 
 
 msgid "WELCOME_NEW_USER"
-msgstr "Willkommen zum Clockify Skill, hier kannst du deine Zeiterfassung in Clockify vornehmen oder gebuchte Stunden abfragen. Um eine neue Zeiterfassung zu starten sag einfach 'Zeiterfassung starten' und gebe das Projekt und die Aufgabe an, an der du arbeiten möchtest. Beim nächsten Öffnen des Skill, kannst du die Zeiterfassung stoppen oder gebuchte Stunden abfragen."
+msgstr "Willkommen zum Clockify Skill, hier kannst du deine Zeiterfassung in Clockify vornehmen oder gebuchte Stunden abfragen. Um eine neue Zeiterfassung zu starten sag einfach 'Zeiterfassung starten' und gebe das Projekt und die Aufgabe an, an der du arbeiten möchtest. Beim nächsten Öffnen des Skill, kannst du die Zeiterfassung anhalten oder gebuchte Stunden abfragen."
 
 msgid "WELCOME_RETURNING_USER"
 msgstr "Willkommen zurück."
@@ -21,7 +21,7 @@ msgid "WELCOME_SELECTION"
 msgstr "Möchtest du die Zeiterfassung starten oder gebuchte Stunden abfragen?"
 
 msgid "WELCOME_STOP_SELECTION"
-msgstr "Möchtest du die aktuelle Zeiterfassung stoppen?"
+msgstr "Möchtest du die aktuelle Zeiterfassung anhalten oder gebuchte Stunden abfragen?"
 
 msgid "WELCOME_SHOW_SELECTION"
 msgstr "Möchtest du gebuchte Stunden abfragen?"

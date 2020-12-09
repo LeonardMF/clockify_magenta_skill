@@ -9,9 +9,9 @@
 #
 from skill_sdk import skill, Response, tell, ask
 from skill_sdk.l10n import _
+
 from clockify_api import check_running_timer, get_clockify, get_time_entries
 
-#@skill.intent_handler('TEAM_06_START_TIME_TRACKING')
 @skill.intent_handler('TEAM_06_OPEN_TIME_TRACKING')
 def handler() -> Response:
     """ Handler of TEAM_06_OPEN_TIME_TRACKING intent,
