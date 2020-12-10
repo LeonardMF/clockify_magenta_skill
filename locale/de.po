@@ -40,3 +40,9 @@ msgstr "Ok, ich stoppe die Zeiterfassung am {project}. Du hast {duration} an {ta
 
 msgid "STOP_ERROR"
 msgstr "Aktuell läuft die Zeiterfassung nicht."
+
+msgid "SHOW_TIME"
+msgstr "Folgende Stunden wurden zuletzt erfasst: Für das Projekt {project} {duration} an der Aufgabe {task}. Mehr findest du unter Clockify Punkt Me."
+
+msgid "SHOW_ERROR"
+msgstr "Bislang wurden keine Stunden erfasst."

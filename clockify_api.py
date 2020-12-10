@@ -213,16 +213,29 @@ if __name__ == '__main__':
     
     # print(add_time_entrie(workspace_id, project_id, task_description, now_str, end_datetime=None))
 
-    running_timer = check_running_timer(time_entries)
+    # running_timer = check_running_timer(time_entries)
 
-    if running_timer:
-        # time_entrie = end_time_entrie(workspace_id, running_timer["id"], running_timer["timeInterval"]["start"], end_datetime)
+    # if running_timer:
+    #     # time_entrie = end_time_entrie(workspace_id, running_timer["id"], running_timer["timeInterval"]["start"], end_datetime)
         
-        time_entrie =  stop_time_entrie(workspace_id, user_id=clockify_id, end_datetime=now_str)
-        print(time_entrie)
-        project = project_ids[time_entrie['projectId']]
-        duration = time_entrie['timeInterval']['duration']
-        task = time_entrie['description']
-        print(project)
-        print(duration)
-        print(task)
+    #     time_entrie =  stop_time_entrie(workspace_id, user_id=clockify_id, end_datetime=now_str)
+    #     print(time_entrie)
+    #     project = project_ids[time_entrie['projectId']]
+    #     duration = time_entrie['timeInterval']['duration']
+    #     task = time_entrie['description']
+    #     print(project)
+    #     print(duration)
+    #     print(task)
+
+    entries = get_time_entries(workspace_id, clockify_id)
+
+    time_entrie = entries[0]
+
+    project = project_ids[time_entrie['projectId']]
+
+
+    duration = time_entrie['timeInterval']['duration']
+    task = time_entrie['description']
+    print(project)
+    print(duration)
+    print(task)
