@@ -33,7 +33,7 @@ def parse_duration(duration):
         if minute > 1:
             duration = str(minute) + " Minuten"
         else:
-            duration = "eine Minuten"
+            duration = "eine Minute"
 
     return duration
 

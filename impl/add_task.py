@@ -24,9 +24,8 @@ def handler(user_id: str, task: str) -> Response:
 
     :return:        Response
     """
-    # ToDo: Get task from context
-    task = get_task(user_id)
-    # set_task(user_id,task)
+   
+    set_task(user_id,task)
 
     # Get project from db
     project = get_project(user_id)

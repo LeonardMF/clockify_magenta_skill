@@ -29,6 +29,9 @@ def handler(user_id: str, project: str) -> Response:
     # projects = get_projects(workspace_id)
     # project_id = projects[project]
 
+    if project == 'Hecker Tom' or project == 'hekatron' or project == 'Hecker Ton':
+        project = 'Hackathon'
+
     if set_project(user_id, project):
         msg = _('ASK_TASK')
     else:
