@@ -52,4 +52,17 @@ Expose the locally running skill via ngrok:
 
     $ ./ngrok http 4242 --subdomain time-tracker
 
+## Video
+
+Watch the demos of the prototype in my [Project Presentation](https://docs.google.com/presentation/d/1qD0rEdwrFhqxXym_j6HMXmzUHc4KGJ796hc7DXoMVxc/edit?usp=sharing). Here are the download links of the videos:
+
+- [01_Start.mp4](https://drive.google.com/file/d/1NrN9gIJpwgFesvRjX0s_bPdLR5DaIT0Z/view?usp=sharing)
+- [12_Stop.mp4](https://drive.google.com/file/d/1OlkpMHC_o0PjVgCSGP8sp8T4p9yVlExU/view?usp=sharing)
+- [23_Show.mp4](https://drive.google.com/file/d/1A6awKQ-5tJH3BR19r9Pn88Rjl77upNDI/view?usp=sharing)
+- [31_New_User.mp4](https://drive.google.com/file/d/15Br4qbf9lQ1_eNy3nJ3Mp-syecRsE8db/view?usp=sharing)
+- [32_App.mp4](https://drive.google.com/file/d/18Xm5opPfhkMtblQJlLNaFrDZ6ra__KL0/view?usp=sharing)
+- [33_Onboarded_User.mp4](https://drive.google.com/file/d/1AGx0X6WgfnRlebatjLRlEAV5DUCVGxyz/view?usp=sharing)
+- [41_Show.mp4](https://drive.google.com/file/d/1cgaBL-xNGKRbvHtYsMZ9QouP7NgksQRZ/view?usp=sharing)
+- [42_Card.mp4](https://drive.google.com/file/d/1oCSb7cTTAoQD34wE-sk6P9CLtUQC0-XS/view?usp=sharing)
+
 ## Deployment 
