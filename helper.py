@@ -1,4 +1,6 @@
 import re 
+import random
+import string
 
 def parse_duration(duration):
 
@@ -24,11 +26,20 @@ def parse_duration(duration):
          else:
             minute = 0
     
-    if hour > 0:
-        if minute > 9:
-            duration = str(hour) + ":" + str(minute)
+    if hour > 1:
+        if minute > 1:
+            duration = str(hour) + " Stunden und " + str(minute) + " Minuten"
+        elif minute == 0:
+            duration = str(hour) + " Stunden"
         else:
-            duration = str(0) + str(minute) + ":" + str(hour) 
+            duration = str(hour) + " Stunden und " + "eine Minute"
+    elif hour == 1:
+        if minute > 1:
+            duration = "eine Stunde und " + str(minute) + " Minuten"
+        elif minute == 0:
+            duration = "eine Stunde"
+        else:
+            duration = "eine Stunde und eine Minute"
     else:
         if minute > 1:
             duration = str(minute) + " Minuten"
@@ -37,10 +48,16 @@ def parse_duration(duration):
 
     return duration
 
-if __name__ == '__main__':
-    duration = 'PT1H30M15S'
-    duration = 'PT15M1S'
+def get_random_string(length):
+    letters = string.ascii_uppercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return  result_str
 
-    duration = parse_duration(duration)
+if __name__ == '__main__':
+    # duration = 'PT1H30M15S'
+    # duration = 'PT15M1S'
+
+    # duration = parse_duration(duration)
     
-    print(duration)
+    # print(duration)
+    print(get_random_string(4))

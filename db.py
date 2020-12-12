@@ -70,6 +70,52 @@ def update_user(user_info):
     else:
         return True
 
+def set_user_token(user_id, user_token):
+
+    try:
+        dynamodb = boto3.resource('dynamodb', region_name=LMF_AWS_DB_REGION, aws_access_key_id=LMF_AWS_ACCESS_KEY_ID, aws_secret_access_key=LMF_AWS_SECRET_ACCESS_KEY)
+        table = dynamodb.Table(LMF_AWS_TABLE_NAME)
+        response = table.update_item(
+                Key = {
+                        'user_id': user_id
+                },
+                UpdateExpression="set user_token=:u_t",
+                ExpressionAttributeValues={
+                    ':u_t': user_token,
+                },
+        )
+    except:
+        print("User Token could not be added!")
+        return False
+    else:
+        return True
+
+def get_user_token(user_id):
+
+    try:
+        response = table.get_item(
+                Key = { 'user_id': user_id })
+
+        user_token = response['Item']['user_token']
+    except:
+        print("User token not found!")
+        return None
+    else:
+        return user_token
+
+def get_clockify_api_key(user_id):
+
+    try:
+        response = table.get_item(
+                Key = { 'user_id': user_id })
+
+        clockify_api_key = response['Item']['clockify_api_key']
+    except:
+        print("Clockify API Key not found!")
+        return None
+    else:
+        return clockify_api_key
+
 def set_project(user_id, project_name):
 
     try:
@@ -149,11 +195,22 @@ if __name__ == '__main__':
 
     # set_project(user_id,project_name)
     
-    task = "Datenbank anbinden"
+    # task = "Datenbank anbinden"
 
-    # set_task(user_id, task)
+    # # set_task(user_id, task)
 
-    print(get_project(user_id))
+    # print(get_project(user_id))
 
-    print(get_task(user_id))
+    # print(get_task(user_id))
+
+    # print(get_clockify_api_key(user_id))
+
+    user_token = get_user_token(user_id)
+    # if user_token is None:
+    #     user_token = "LLMF"
+    #     set_user_token(user_id, user_token)
+    #     print("Set Token ...")
+    # else: 
+    #     print(user_token)
+    print(user_token is None or user_token == '')
 

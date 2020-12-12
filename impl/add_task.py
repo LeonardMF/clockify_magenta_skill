@@ -13,7 +13,7 @@ from skill_sdk import skill, Response, tell, ask
 from skill_sdk.l10n import _
 
 from clockify_api import get_clockify, get_projects, add_time_entrie
-from db import get_project, set_task, get_task
+from db import get_clockify_api_key, get_project, get_task, set_task
 
 #@skill.intent_handler('TEAM_06_START_TIME_TRACKING')
 @skill.intent_handler('TEAM_06_ADD_TASK')
@@ -29,11 +29,11 @@ def handler(user_id: str, task: str) -> Response:
 
     # Get project from db
     project = get_project(user_id)
-    
-    clockify = get_clockify()
+    clockify_api_key = get_clockify_api_key(user_id)
+    clockify = get_clockify(clockify_api_key)
     clockify_id = clockify['user_id']
     workspace_id = clockify['active_workspace_id']
-    projects = get_projects(workspace_id)
+    projects = get_projects(clockify_api_key, workspace_id)
     project_id = projects[project]
 
     if project is None:
@@ -48,7 +48,7 @@ def handler(user_id: str, task: str) -> Response:
         now_str = now.isoformat()
         now_str = now_str.split('.')[0] + ".000Z"
 
-        add_time_entrie(workspace_id, project_id, task, now_str, end_datetime=None)
+        add_time_entrie(clockify_api_key, workspace_id, project_id, task, now_str, end_datetime=None)
 
         msg = _('START_COMFIRMATION')
         response = tell(msg)

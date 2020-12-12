@@ -11,8 +11,8 @@ from datetime import datetime
 from skill_sdk import skill, Response, tell
 from skill_sdk.l10n import _
 
-from clockify_api import get_clockify, get_projects, get_time_entries, check_running_timer, stop_time_entrie, get_project_ids
-from db import set_project, set_task
+from clockify_api import get_clockify, get_time_entries, check_running_timer, stop_time_entrie, get_project_ids
+from db import get_clockify_api_key, set_project, set_task
 from helper import parse_duration
 
 
@@ -24,11 +24,12 @@ def handler(user_id:str) -> Response:
 
     :return:        Response
     """
-    clockify = get_clockify()
+    clockify_api_key = get_clockify_api_key(user_id)
+    clockify = get_clockify(clockify_api_key)
     clockify_id = clockify['user_id']
     workspace_id = clockify['active_workspace_id']
-    time_entries = get_time_entries(workspace_id, clockify_id)
-    project_ids = get_project_ids(workspace_id)
+    time_entries = get_time_entries(clockify_api_key,workspace_id, clockify_id)
+    project_ids = get_project_ids(clockify_api_key, workspace_id)
 
     # Get time tracking status
     running_timer = check_running_timer(time_entries)
@@ -38,7 +39,7 @@ def handler(user_id:str) -> Response:
         now = datetime.utcnow()
         now_str = now.isoformat()
         now_str = now_str.split('.')[0] + ".000Z"
-        time_entrie = stop_time_entrie(workspace_id, user_id=clockify_id, end_datetime=now_str)
+        time_entrie = stop_time_entrie(clockify_api_key, workspace_id, user_id=clockify_id, end_datetime=now_str)
 
         project = project_ids[time_entrie['projectId']]
         duration = parse_duration(time_entrie['timeInterval']['duration'])

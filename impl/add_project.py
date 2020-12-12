@@ -10,8 +10,8 @@
 from skill_sdk import skill, Response, ask
 from skill_sdk.l10n import _
 
-# from clockify_api import get_clockify, get_projects
-from db import set_project
+from clockify_api import add_project, get_clockify, get_projects
+from db import get_clockify_api_key, set_project
 
 @skill.intent_handler('TEAM_06_ADD_PROJECT')
 def handler(user_id: str, project: str) -> Response:
@@ -22,15 +22,22 @@ def handler(user_id: str, project: str) -> Response:
     :return:        Response
     """
     
-    # # ToDo: Check project_id
-    # clockify = get_clockify()
-    # clockify_id = clockify['user_id']
-    # workspace_id = clockify['active_workspace_id']
-    # projects = get_projects(workspace_id)
-    # project_id = projects[project]
+    # Check project_id
+    clockify_api_key = get_clockify_api_key(user_id)
+    clockify = get_clockify(clockify_api_key)
+    clockify_id = clockify['user_id']
+    workspace_id = clockify['active_workspace_id']
+    projects = get_projects(clockify_api_key, workspace_id)
 
+    # Help the ASR
     if project == 'Hecker Tom' or project == 'hekatron' or project == 'Hecker Ton':
-        project = 'Hackathon'
+            project = 'Hackathon'
+
+    # Create new Project        
+    try:
+        project_id = projects[project]
+    except KeyError:
+        add_project(clockify_api_key, workspace_id, project_name=project)
 
     if set_project(user_id, project):
         msg = _('ASK_TASK')

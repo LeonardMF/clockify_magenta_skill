@@ -2,17 +2,14 @@ import json
 import requests
 import pytz
 from datetime import datetime
-from decouple import config
 
 API_BASE_URL = "https://api.clockify.me/api/v1"
-CLOCKIFY_API_KEY = config('CLOCKIFY_API_KEY')
 
-header = {'X-Api-Key': CLOCKIFY_API_KEY,
-          'content-type':'application/json'}
+def get_clockify(clockify_api_key):
 
-
-def get_clockify():
     url = API_BASE_URL + "/user"
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     response = requests.get(url, headers=header)
 
@@ -29,8 +26,11 @@ def get_clockify():
         print("User not found!")
         return None
 
-def get_projects(workspace_id):
+def get_projects(clockify_api_key, workspace_id):
+
     url = API_BASE_URL + "/workspaces/{workspaceId}/projects".format(workspaceId=workspace_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     response = requests.get(url, headers=header)
 
@@ -48,8 +48,10 @@ def get_projects(workspace_id):
         print("Projects not found!")
         return None
 
-def get_project_ids(workspace_id):
+def get_project_ids(clockify_api_key, workspace_id):
     url = API_BASE_URL + "/workspaces/{workspaceId}/projects".format(workspaceId=workspace_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     response = requests.get(url, headers=header)
 
@@ -67,8 +69,10 @@ def get_project_ids(workspace_id):
         print("Projects not found!")
         return None
 
-def add_project(workspace_id, project_name):
+def add_project(clockify_api_key, workspace_id, project_name):
     url = API_BASE_URL + "/workspaces/{workspaceId}/projects".format(workspaceId=workspace_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
     data = {"name": project_name,
             "clientId": "",
             "isPublic": "false",
@@ -92,8 +96,10 @@ def add_project(workspace_id, project_name):
         print("Project could not be added!")
         return None
 
-def get_time_entries(workspace_id, user_id):
+def get_time_entries(clockify_api_key, workspace_id, user_id):
     url = API_BASE_URL + "/workspaces/{workspaceId}/user/{userId}/time-entries".format(workspaceId=workspace_id,userId=user_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
     
     response = requests.get(url, headers=header)
     
@@ -105,8 +111,10 @@ def get_time_entries(workspace_id, user_id):
         print("Time entries not found!")
         return None
 
-def add_time_entrie(workspace_id, project_id, task_description, start_datetime, end_datetime=None):
+def add_time_entrie(clockify_api_key, workspace_id, project_id, task_description, start_datetime, end_datetime=None):
     url = API_BASE_URL + "/workspaces/{workspaceId}/time-entries".format(workspaceId=workspace_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
     data = {"start": start_datetime,
             "billable": "true",
             "description": task_description,
@@ -125,8 +133,10 @@ def add_time_entrie(workspace_id, project_id, task_description, start_datetime, 
         print("Time entrie could not be added!")
         return None
 
-def get_time_entrie(workspace_id, time_entry_id):
+def get_time_entrie(clockify_api_key, workspace_id, time_entry_id):
     url = API_BASE_URL + "/workspaces/{workspaceId}/time-entries/{timeEntryId}".format(workspaceId=workspace_id,timeEntryId=time_entry_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     response = requests.get(url, headers=header)
     
@@ -142,9 +152,11 @@ def get_time_entrie(workspace_id, time_entry_id):
 # To stop the timer, you'll have to use the "PUT /workspaces/{workspaceId}/time-entries/{timeEntryId}/end" PATH (request example: {"end":"2019-02-07T14:00:07.000Z"}
 # Does not work!
 # Works with "PUT /workspaces/{workspaceId}/time-entries/{timeEntryId}" with  {"start": "2020-11-28T11:00:00Z","end":"2019-02-07T14:00:07.000Z"}
-def end_time_entrie(workspace_id, time_entrie_id, start_datetime, end_datetime):
+def end_time_entrie(clockify_api_key, workspace_id, time_entrie_id, start_datetime, end_datetime):
 
     url = API_BASE_URL + "/workspaces/{workspaceId}/time-entries/{timeEntryId}".format(workspaceId=workspace_id,timeEntryId=time_entrie_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     data = {"start": start_datetime,
             "end": end_datetime}
@@ -162,8 +174,10 @@ def end_time_entrie(workspace_id, time_entrie_id, start_datetime, end_datetime):
         return None
 
 
-def stop_time_entrie(workspace_id, user_id, end_datetime):
+def stop_time_entrie(clockify_api_key, workspace_id, user_id, end_datetime):
     url = API_BASE_URL + "/workspaces/{workspaceId}/user/{userId}/time-entries".format(workspaceId=workspace_id,userId=user_id)
+    header = {'X-Api-Key': clockify_api_key,
+              'content-type':'application/json'}
 
     data = {"end": end_datetime}
 
@@ -188,25 +202,27 @@ def check_running_timer(time_entries):
 
 
 if __name__ == '__main__':
-    clockify = get_clockify()
+
+    clockify_api_key = ""
+    clockify = get_clockify(clockify_api_key)
     clockify_id = clockify['user_id']
     workspace_id = clockify['active_workspace_id']
-    projects = get_projects(workspace_id)
-    project_ids = get_project_ids(workspace_id)
+    projects = get_projects(clockify_api_key, workspace_id)
+    project_ids = get_project_ids(clockify_api_key,workspace_id)
 
     # print(projects)
 
     # new_project = add_project(workspace_id,"Pitch")
     # print(new_project)
 
-    time_entries = get_time_entries(workspace_id, clockify_id)
+    # time_entries = get_time_entries(workspace_id, clockify_id)
      
-    project_id = projects["Alexa Skill"]
-    task_description = "implement clockify api"
+    # project_id = projects["Alexa Skill"]
+    # task_description = "implement clockify api"
 
-    now = datetime.utcnow()
-    now_str = now.isoformat()
-    now_str = now_str.split('.')[0] + ".000Z"
+    # now = datetime.utcnow()
+    # now_str = now.isoformat()
+    # now_str = now_str.split('.')[0] + ".000Z"
 
     # start_datetime = "2020-11-28T19:30:00.000Z"
     # end_datetime = "2020-11-28T20:53:00.000Z"
@@ -227,15 +243,26 @@ if __name__ == '__main__':
     #     print(duration)
     #     print(task)
 
-    entries = get_time_entries(workspace_id, clockify_id)
+    # entries = get_time_entries(workspace_id, clockify_id)
 
-    time_entrie = entries[0]
+    # time_entrie = entries[0]
 
-    project = project_ids[time_entrie['projectId']]
+    # project = project_ids[time_entrie['projectId']]
 
 
-    duration = time_entrie['timeInterval']['duration']
-    task = time_entrie['description']
-    print(project)
-    print(duration)
-    print(task)
+    # duration = time_entrie['timeInterval']['duration']
+    # task = time_entrie['description']
+    # print(project)
+    # print(duration)
+    # print(task)
+
+    project = "Neues Projekt"
+
+    try:
+        project_id = projects[project]
+        print(project_id)
+    except KeyError:
+        add_project(clockify_api_key, workspace_id, project_name=project)
+        
+
+    

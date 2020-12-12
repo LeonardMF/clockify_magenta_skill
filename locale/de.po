@@ -12,19 +12,16 @@ msgstr ""
 
 
 msgid "WELCOME_NEW_USER"
-msgstr "Willkommen zum Clockify Skill, hier kannst du deine Zeiterfassung in Clockify vornehmen oder gebuchte Stunden abfragen. Um eine neue Zeiterfassung zu starten sag einfach 'Zeiterfassung starten' und gebe das Projekt und die Aufgabe an, an der du arbeiten möchtest. Beim nächsten Öffnen des Skill, kannst du die Zeiterfassung anhalten oder gebuchte Stunden abfragen."
+msgstr "<speak>Hallo beim <lang xml:lang='en-US'>Time Tracker</lang> Skill. Leider ist für dich noch kein <lang xml:lang='en-US'>Clockify</lang> Account hinterlegt. Aber ich habe dir eine Karte gesendet, die dir erklärt was du tun kannst, um einen Account zu hinterlegen. Gehe dazu einfach in den Verlauf deiner Hallo Magenta App.</speak>"
 
 msgid "WELCOME_RETURNING_USER"
 msgstr "Willkommen zurück."
 
 msgid "WELCOME_SELECTION"
-msgstr "Möchtest du die Zeiterfassung starten oder gebuchte Stunden abfragen?"
+msgstr "<speak>Willkommen zum <lang xml:lang='en-US'>Time Tracker</lang> Skill, hier kannst du deine Zeiterfassung in <lang xml:lang='en-US'>Clockify</lang> vornehmen oder gebuchte Stunden abfragen. Um eine neue Zeiterfassung zu starten sag einfach 'Zeiterfassung starten' und gebe das Projekt und die Aufgabe an, an der du arbeiten möchtest. Beim nächsten Öffnen des Skill, kannst du die Zeiterfassung anhalten oder gebuchte Stunden abfragen. Möchtest du die Zeiterfassung starten oder gebuchte Stunden abfragen?</speak>"
 
 msgid "WELCOME_STOP_SELECTION"
 msgstr "Möchtest du die aktuelle Zeiterfassung anhalten oder gebuchte Stunden abfragen?"
-
-msgid "WELCOME_SHOW_SELECTION"
-msgstr "Möchtest du gebuchte Stunden abfragen?"
 
 msgid "ASK_PROJECT"
 msgstr "An welchem Projekt möchtest du arbeiten?"
@@ -42,7 +39,7 @@ msgid "STOP_ERROR"
 msgstr "Aktuell läuft die Zeiterfassung nicht."
 
 msgid "SHOW_TIME"
-msgstr "Folgende Stunden wurden zuletzt erfasst: Für das Projekt {project} {duration} an der Aufgabe {task}. Mehr findest du unter Clockify Punkt Me."
+msgstr "<speak>Folgende Stunden wurden zuletzt erfasst: Für das Projekt {project} {duration} an der Aufgabe {task}. Mehr findest du unter <lang xml:lang='en-US'>Clockify</lang> Punkt <lang xml:lang='en-US'>me</lang>. Ich habe dir eine Karte mit dem Link in deine Hallo Magenta App geschickt.</speak>"
 
 msgid "SHOW_ERROR"
 msgstr "Bislang wurden keine Stunden erfasst."
