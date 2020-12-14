@@ -59,30 +59,35 @@ def handler(user_id: str) -> Response:
             action_text="Klick hier, um einen Account zu hinterlegen."
         )
     else:
-        clockify = get_clockify(clockify_api_key)
-        clockify_id = clockify['user_id']
-        workspace_id = clockify['active_workspace_id']
-        project_ids = get_project_ids(clockify_api_key, workspace_id)
-        time_entries = get_time_entries(clockify_api_key, workspace_id, clockify_id)
 
-        time_entrie = time_entries[0]
+        try:
+            clockify = get_clockify(clockify_api_key)
+            clockify_id = clockify['user_id']
+            workspace_id = clockify['active_workspace_id']
+            project_ids = get_project_ids(clockify_api_key, workspace_id)
+            time_entries = get_time_entries(clockify_api_key, workspace_id, clockify_id)
 
-        if time_entries[0]:
-            project = project_ids[time_entries[0]['projectId']]
-            duration = parse_duration(time_entries[0]['timeInterval']['duration'])
-            task = time_entries[0]['description']
-            msg = _("SHOW_TIME", project=project, duration=duration, task=task)
-            response = tell(msg)
-            response.card = Card(
-                type_="GENERIC_DEFAULT",
-                title="Time Tracker: Clockify Link",
-                text="Hier ist der Link zu deinen gebuchten Stunden:",
-                action=get_clockify_url(),
-                action_text="Öffnen"
-            )
-        else: 
+            time_entrie = time_entries[0]
+            if time_entrie['timeInterval']['duration'] is None:
+                time_entrie = time_entries[1]
+
+            if time_entrie:
+                project = project_ids[time_entrie['projectId']]
+                duration = parse_duration(time_entrie['timeInterval']['duration'])
+                task = time_entrie['description']
+                msg = _("SHOW_TIME", project=project, duration=duration, task=task)
+                response = tell(msg)
+                response.card = Card(
+                    type_="GENERIC_DEFAULT",
+                    title="Time Tracker: Clockify Link",
+                    text="Hier ist der Link zu deinen gebuchten Stunden:",
+                    action=get_clockify_url(),
+                    action_text="Öffnen"
+                )
+            else: 
+                msg = _("SHOW_ERROR")
+                response = tell(msg)
+        except:
             msg = _("SHOW_ERROR")
             response = tell(msg)
-
-
     return response

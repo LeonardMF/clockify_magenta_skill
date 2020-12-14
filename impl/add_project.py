@@ -30,7 +30,7 @@ def handler(user_id: str, project: str) -> Response:
     projects = get_projects(clockify_api_key, workspace_id)
 
     # Help the ASR
-    if project == 'Hecker Tom' or project == 'hekatron' or project == 'Hecker Ton':
+    if project == 'Hecker Tom' or project == 'hekatron' or project == 'Hecker Ton' or project == 'Hecker':
             project = 'Hackathon'
 
     # Create new Project        

@@ -3,6 +3,8 @@ import requests
 import pytz
 from datetime import datetime
 
+from helper import parse_duration
+
 API_BASE_URL = "https://api.clockify.me/api/v1"
 
 def get_clockify(clockify_api_key):
@@ -203,12 +205,12 @@ def check_running_timer(time_entries):
 
 if __name__ == '__main__':
 
-    clockify_api_key = ""
-    clockify = get_clockify(clockify_api_key)
-    clockify_id = clockify['user_id']
-    workspace_id = clockify['active_workspace_id']
-    projects = get_projects(clockify_api_key, workspace_id)
-    project_ids = get_project_ids(clockify_api_key,workspace_id)
+    # clockify_api_key = ""
+    # clockify = get_clockify(clockify_api_key)
+    # clockify_id = clockify['user_id']
+    # workspace_id = clockify['active_workspace_id']
+    # projects = get_projects(clockify_api_key, workspace_id)
+    # project_ids = get_project_ids(clockify_api_key,workspace_id)
 
     # print(projects)
 
@@ -255,14 +257,31 @@ if __name__ == '__main__':
     # print(project)
     # print(duration)
     # print(task)
-
-    project = "Neues Projekt"
-
     try:
-        project_id = projects[project]
-        print(project_id)
-    except KeyError:
-        add_project(clockify_api_key, workspace_id, project_name=project)
-        
+        clockify_api_key = ""
+        clockify = get_clockify(clockify_api_key)
+        clockify_id = clockify['user_id']
+        workspace_id = clockify['active_workspace_id']
+        project_ids = get_project_ids(clockify_api_key, workspace_id)
+        time_entries = get_time_entries(clockify_api_key, workspace_id, clockify_id)
+
+        time_entrie = time_entries[0]
+        if time_entrie['timeInterval']['duration'] is None:
+            time_entrie = time_entries[1]
+
+        if time_entrie :
+            print(time_entrie)
+            project = project_ids[time_entrie['projectId']]
+            duration = parse_duration(time_entrie['timeInterval']['duration'])
+            task = time_entrie['description']
+            print(project)
+            print(duration)
+            print(task)
+    except: 
+        print("error msg")
+
+
+
+
 
     
